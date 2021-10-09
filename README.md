@@ -11,13 +11,17 @@ You need to install the following tools to run the project:
 
 ### Step 1 - Install dependencies
 In a terminal, you run the following instruction: `./build_project.sh` 
+
 **Note:** if you receive a message in your terminal as following: `permission denied: ./build_project.sh`, you need to run this instruction `chmod +x build_project.sh` 
+<img width="680" alt="Installation" src="https://user-images.githubusercontent.com/4505476/136675275-b41b3c17-0f9b-4d1b-88ec-302aaf73fafa.png">
+
 
 ### Step 2 - Open the project in Xcode
 You can open it using your terminal with this command `open PostsApp.xcodeproj` or you can open it in your folder, where it was downloaded, with double click on `PostsApp.xcodeproj`
 
 ### Step 3 - Configurate the project
 
+<img width="1400" alt="SetupProject" src="https://user-images.githubusercontent.com/4505476/136675356-1da95653-3938-46d4-b040-6f304c8bda7a.png">
 
 ## How to run
 After the installation, you can run the project in Xcode without any problem. Press the play button or press `cmd+R` in your keyboard.
