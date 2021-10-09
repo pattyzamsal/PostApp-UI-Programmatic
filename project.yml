@@ -1,0 +1,174 @@
+name: PostsApp
+options:
+  xcodeVersion: "13.0"
+  createIntermediateGroups: true
+  bundleIdPrefix: "com.pattyzamsal"
+  deploymentTarget:
+    iOS: "13.0"
+packages:
+  Alamofire:
+    url: "https://github.com/Alamofire/Alamofire.git"
+    majorVersion: 5.4.0
+configs:
+  STG_Debug: debug
+  STG_Release: release 
+  PROD_Debug: debug 
+  PROD_Release: release
+settings:
+  base:
+    VERSIONING_SYSTEM: "apple-generic"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.2"
+    CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: YES
+    TARGETED_DEVICE_FAMILY: 1
+    VALIDATE_WORKSPACE: YES
+    VALIDATE_PRODUCT: YES
+  configs:
+    STG_Debug:
+      PRODUCT_NAME: "PostsAppSTGDebug"
+      DISPLAY_NAME_CUSTOM: "Posts App STG"
+      PRODUCT_BUNDLE_IDENTIFIER: "com.pattyzamsal.PostsApp.stg"
+      ENVIROMENT: "STG"
+      DEBUG: "1"
+      ONLY_ACTIVE_ARCH: YES
+      ENABLE_TESTABILITY: YES
+      ENABLE_BITCODE: NO
+      ASSETCATALOG_COMPILER_OPTIMIZATION: "time"
+    STG_Release:
+      PRODUCT_NAME: "PostsAppSTG"
+      DISPLAY_NAME_CUSTOM: "Posts App STG"
+      PRODUCT_BUNDLE_IDENTIFIER: "com.pattyzamsal.PostsApp.stg"
+      ENVIROMENT: "STG"
+      DEBUG: "0"
+      SWIFT_OPTIMIZATION_LEVEL: "-Osize"
+      SWIFT_COMPILATION_MODE: "wholemodule"
+      ASSETCATALOG_COMPILER_OPTIMIZATION: "space"
+    PROD_Debug:
+      PRODUCT_NAME: "PostsAppDebug"
+      DISPLAY_NAME_CUSTOM: "Posts App"
+      PRODUCT_BUNDLE_IDENTIFIER: "com.pattyzamsal.PostsApp"
+      ENVIROMENT: "PROD"
+      DEBUG: "1"
+      ONLY_ACTIVE_ARCH: YES
+      ENABLE_TESTABILITY: YES
+      ENABLE_BITCODE: NO
+      ASSETCATALOG_COMPILER_OPTIMIZATION: "time"
+    PROD_Release:
+      PRODUCT_NAME: "PostsApp"
+      DISPLAY_NAME_CUSTOM: "Posts App"
+      PRODUCT_BUNDLE_IDENTIFIER: "com.pattyzamsal.PostsApp"
+      ENVIROMENT: "PROD"
+      DEBUG: "0"
+      SWIFT_OPTIMIZATION_LEVEL: "-Osize"
+      SWIFT_COMPILATION_MODE: "wholemodule"
+      ASSETCATALOG_COMPILER_OPTIMIZATION: "space"
+targets:
+  Data:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Data
+    settings:
+      PRODUCT_NAME: "Data"
+      PRODUCT_BUNDLE_IDENTIFIER: "com.pattyzamsal.PostsApp.data"
+      GCC_WARN_INHIBIT_ALL_WARNINGS: YES
+      TARGETED_DEVICE_FAMILY: 1
+    dependencies:
+      - target: Domain
+        embed: false
+      - package: Alamofire
+  DataTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: DataTests
+    dependencies:
+      - target: Data
+      - package: Alamofire
+    settings:
+      PRODUCT_NAME: "DataTests"
+  Domain:
+    type: framework
+    platform: iOS
+    sources:
+      - path: Domain
+    settings:
+      PRODUCT_NAME: "Domain"
+      PRODUCT_BUNDLE_IDENTIFIER: "com.pattyzamsal.PostsApp.domain"
+      TARGETED_DEVICE_FAMILY: 1
+  DomainTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: DomainTests
+    dependencies:
+      - target: Domain
+    settings:
+      PRODUCT_NAME: "DomainTests"
+  Injector:
+    type: framework
+    platform: iOS
+    sources: Injector
+    dependencies:
+      - target: Data
+        embed: false
+    settings:
+      PRODUCT_NAME: "Injector"
+      PRODUCT_BUNDLE_IDENTIFIER: "com.pattyzamsal.PostsApp.injector"
+      GCC_WARN_INHIBIT_ALL_WARNINGS: YES
+      TARGETED_DEVICE_FAMILY: 1
+  PostsApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+    settings:
+      base:
+        INFOPLIST_FILE: Sources/Resources/Info.plist
+        SWIFT_OBJC_BRIDGING_HEADER: Sources/Resources/PostsApp-Bridging-Header.h
+        FRAMEWORK_SEARCH_PATHS: [$(inherited)]
+        HEADER_SEARCH_PATHS: [$(inherited), Sources]
+    dependencies:
+      - target: Data
+      - target: Domain
+      - target: Injector
+    scheme:
+      gatherCoverageData: true
+      testTargets:
+        - PostsAppTests
+        - DataTests
+        - DomainTests
+      configVariants:
+        - STG
+        - PROD
+  PostsAppTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: DataTests
+        excludes:
+          - CompileError
+    dependencies:
+      - target: PostsApp
+      - target: Data
+    settings:
+      configs:
+        STG_Debug:
+          BUNDLE_LOADER: $(BUILT_PRODUCTS_DIR)/$(TEST_TARGET_NAME).app/$(TEST_TARGET_NAME)
+          TEST_HOST: $(BUNDLE_LOADER)
+          TEST_TARGET_NAME: "PostsAppSTGDebug"
+          PRODUCT_NAME: "PostsAppTests"
+        STG_Release:
+          BUNDLE_LOADER: $(BUILT_PRODUCTS_DIR)/$(TEST_TARGET_NAME).app/$(TEST_TARGET_NAME)
+          TEST_HOST: $(BUNDLE_LOADER)
+          TEST_TARGET_NAME: "PostsAppSTG"
+          PRODUCT_NAME: "PostsAppTests"
+        PROD_Debug:
+          BUNDLE_LOADER: $(BUILT_PRODUCTS_DIR)/$(TEST_TARGET_NAME).app/$(TEST_TARGET_NAME)
+          TEST_HOST: $(BUNDLE_LOADER)
+          TEST_TARGET_NAME: "PostsAppDebug"
+          PRODUCT_NAME: "PostsAppTests"
+        PROD_Release:
+          BUNDLE_LOADER: $(BUILT_PRODUCTS_DIR)/$(TEST_TARGET_NAME).app/$(TEST_TARGET_NAME)
+          TEST_HOST: $(BUNDLE_LOADER)
+          TEST_TARGET_NAME: "PostsApp"
+          PRODUCT_NAME: "PostsAppTests"
+parallelizeBuild: true
