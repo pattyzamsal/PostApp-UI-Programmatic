@@ -21,9 +21,13 @@ class BaseViewController: UIViewController {
         }
     }
     
+    func setRightButtonWithItem(_ item: UIBarButtonItem) {
+        navigationItem.rightBarButtonItem = item
+    }
+    
     func setBackButton(title: String) {
         navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.topItem?.title = title
+        navigationController?.navigationBar.backItem?.title = ""
     }
     
     func setActivityIndicator(_ activityIndicator: UIActivityIndicatorView!) {

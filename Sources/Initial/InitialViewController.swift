@@ -13,6 +13,12 @@ class InitialViewController: BaseViewController {
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var startButton: UIButton!
     
+    private lazy var presenter: InitialContract.Presenter = {
+        let navigator = InitialNavigator(viewController: self)
+        return InitialPresenter(view: self,
+                                navigator: navigator)
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -29,7 +35,7 @@ class InitialViewController: BaseViewController {
     }
     
     @IBAction func didTapStartButton(_ sender: Any) {
-        print("didTapStartButton")
+        presenter.didTapStartButton()
     }
 }
 
@@ -38,5 +44,14 @@ private extension InitialViewController {
         titleLabel.text = TextsConstants.initialTitle.rawValue
         descriptionLabel.text = TextsConstants.descriptionApp.rawValue
         startButton.setTitle(TextsConstants.startButtonTitle.rawValue, for: .normal)
+    }
+}
+
+extension InitialViewController: InitialContract.View {
+    func renderViewState(_ state: InitialViewState) {
+        switch state {
+        case .clear:
+            break
+        }
     }
 }
