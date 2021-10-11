@@ -24,6 +24,7 @@ enum TextsConstants: String {
     case deleteAllPosts = "Delete all posts"
     case noPosts = "There aren't any post to show"
     case noFavorites = "There aren't any favorite post"
+    case delete = "Delete"
     
     // MARK: - Post Detail
     case postDetail = "Post's detail"

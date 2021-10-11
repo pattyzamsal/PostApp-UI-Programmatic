@@ -124,7 +124,7 @@ private extension PostsListViewController {
     }
     
     func setDeleteAction(ID: Int) -> UIContextualAction {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completion) in
+        let deleteAction = UIContextualAction(style: .destructive, title: TextsConstants.delete.rawValue) { [weak self] (action, view, completion) in
             self?.swipeToDeletePost(ID: ID)
         }
         deleteAction.backgroundColor = UIColor.red
