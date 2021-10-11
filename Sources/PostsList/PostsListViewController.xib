@@ -33,7 +33,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sGl-Ed-K8d">
-                            <rect key="frame" x="141" y="20" width="131" height="32"/>
+                            <rect key="frame" x="20" y="20" width="374" height="32"/>
                             <segments>
                                 <segment title="First"/>
                                 <segment title="Second"/>
@@ -69,10 +69,10 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="sGl-Ed-K8d" secondAttribute="trailing" constant="142" id="2sp-VC-kNT"/>
+                        <constraint firstAttribute="trailing" secondItem="sGl-Ed-K8d" secondAttribute="trailing" constant="20" id="2sp-VC-kNT"/>
                         <constraint firstAttribute="trailing" secondItem="Th7-dV-Ste" secondAttribute="trailing" id="43M-PS-PuX"/>
                         <constraint firstItem="T5D-ua-00m" firstAttribute="centerX" secondItem="Th7-dV-Ste" secondAttribute="centerX" id="6zC-fL-uyP"/>
-                        <constraint firstItem="sGl-Ed-K8d" firstAttribute="leading" secondItem="eJi-C3-KPK" secondAttribute="leading" constant="141" id="Ahu-aG-2pX"/>
+                        <constraint firstItem="sGl-Ed-K8d" firstAttribute="leading" secondItem="eJi-C3-KPK" secondAttribute="leading" constant="20" id="Ahu-aG-2pX"/>
                         <constraint firstItem="T5D-ua-00m" firstAttribute="centerY" secondItem="Th7-dV-Ste" secondAttribute="centerY" id="C8M-uK-Rg3"/>
                         <constraint firstItem="Th7-dV-Ste" firstAttribute="leading" secondItem="eJi-C3-KPK" secondAttribute="leading" id="JaO-D5-jPg"/>
                         <constraint firstItem="Th7-dV-Ste" firstAttribute="top" secondItem="sGl-Ed-K8d" secondAttribute="bottom" constant="2" id="MVZ-Sb-c4j"/>

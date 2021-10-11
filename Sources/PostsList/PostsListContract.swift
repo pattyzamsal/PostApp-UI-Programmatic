@@ -21,6 +21,7 @@ protocol PostsListPresenterContract {
     func didTapFavoritesPosts()
     func didTapDelete()
     func didTapPost(ID: Int)
+    func swipeToDeletePost(ID: Int)
     func reloadView(post: PostViewModel)
     func goToPreviousView()
 }

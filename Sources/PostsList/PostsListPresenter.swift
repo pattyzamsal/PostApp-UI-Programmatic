@@ -96,6 +96,12 @@ extension PostsListPresenter: PostsListContract.Presenter {
         navigator.presentPostDetail(postViewModel: postViewModel)
     }
     
+    func swipeToDeletePost(ID: Int) {
+        let index = getIndexOfPost(ID: ID)
+        postsList.remove(at: index)
+        viewState = .render(posts: getPostsListViewModel(posts: postsList))
+    }
+    
     func reloadView(post: PostViewModel) {
         let index = getIndexOfPost(ID: post.ID)
         postsList[index].isFavorite =  post.isFavorite

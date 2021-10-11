@@ -118,6 +118,18 @@ private extension PostsListViewController {
         showTableView(isEmpty: postsList.isEmpty)
         tableView.reloadData()
     }
+    
+    func swipeToDeletePost(ID: Int) {
+        presenter.swipeToDeletePost(ID: ID)
+    }
+    
+    func setDeleteAction(ID: Int) -> UIContextualAction {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completion) in
+            self?.swipeToDeletePost(ID: ID)
+        }
+        deleteAction.backgroundColor = UIColor.red
+        return deleteAction
+    }
 }
 
 extension PostsListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -137,6 +149,17 @@ extension PostsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         presenter.didTapPost(ID: postsList[indexPath.row].ID)
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let postID = postsList[indexPath.row].ID
+        let configuration = UISwipeActionsConfiguration(actions: [setDeleteAction(ID: postID)])
+        return configuration
     }
 }
 
