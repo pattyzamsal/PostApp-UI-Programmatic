@@ -17,8 +17,9 @@ final class PostsListNavigator {
 }
 
 extension PostsListNavigator: PostsListContract.Navigator {
-    func presentPostDetail() {
+    func presentPostDetail(postViewModel: PostViewModel) {
         let postDetailVC = PostDetailViewController()
+        postDetailVC.post = postViewModel
         viewController?.navigationController?.pushViewController(postDetailVC, animated: true)
     }
     

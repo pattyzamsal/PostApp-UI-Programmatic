@@ -55,7 +55,7 @@ private extension PostTableViewCell {
         }
         if viewModel.isFavorite {
             iconImageView.image = UIImage(systemName: "star.fill")?.withRenderingMode(.alwaysTemplate)
-            iconImageView.tintColor = .yellow
+            iconImageView.tintColor = UIColor.getColorApp(name: .yellowForStar)
             iconImageView.isHidden = false
             return
         }

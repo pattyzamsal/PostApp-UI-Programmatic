@@ -35,7 +35,7 @@ class PostsListViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setBackButton(title: "")
+        setBackButton(action: #selector(didTapBackButton))
         setRightBarButton()
         title = TextsConstants.postsList.rawValue
     }
@@ -50,6 +50,10 @@ class PostsListViewController: BaseViewController {
     
     @IBAction func didTapDeleteButton(_ sender: Any) {
         presenter.didTapDelete()
+    }
+    
+    func reloadView(post: PostViewModel) {
+        presenter.reloadView(post: post)
     }
 }
 
@@ -95,6 +99,10 @@ private extension PostsListViewController {
         segmentedControl.setTitleTextAttributes(titleAttributes, for: .normal)
         let titleAttributes1 = [NSAttributedString.Key.foregroundColor: UIColor.white]
         segmentedControl.setTitleTextAttributes(titleAttributes1, for: .selected)
+    }
+    
+    @objc func didTapBackButton() {
+        presenter.goToPreviousView()
     }
     
     @objc func didTapRefresh() {

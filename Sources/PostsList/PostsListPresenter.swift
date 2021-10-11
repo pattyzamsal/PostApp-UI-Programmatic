@@ -92,7 +92,18 @@ extension PostsListPresenter: PostsListContract.Presenter {
     
     func didTapPost(ID: Int) {
         updateListWithID(ID)
-        navigator.presentPostDetail()
+        let postViewModel = convertToViewModel(ID: ID)
+        navigator.presentPostDetail(postViewModel: postViewModel)
+    }
+    
+    func reloadView(post: PostViewModel) {
+        let index = getIndexOfPost(ID: post.ID)
+        postsList[index].isFavorite =  post.isFavorite
+        var posts = postsList
+        if isFavoriteSelected {
+            posts = postsList.filter { $0.isFavorite }
+        }
+        viewState = .render(posts: getPostsListViewModel(posts: posts))
     }
     
     func goToPreviousView() {
@@ -115,19 +126,37 @@ private extension PostsListPresenter {
     func getPostsListViewModel(posts: [Post]) -> [PostViewModel] {
         return posts.map {
             PostViewModel(ID: $0.ID,
-                               title: $0.title,
-                               isRead: $0.isRead,
-                               isFavorite: $0.isFavorite)
+                          userID: String($0.userID),
+                          title: $0.title,
+                          description: $0.description,
+                          isRead: $0.isRead,
+                          isFavorite: $0.isFavorite)
         }
     }
     
-    func updateListWithID(_ ID: Int) {
+    func convertToViewModel(ID: Int) -> PostViewModel {
+        let index = getIndexOfPost(ID: ID)
+        let post = postsList[index]
+        return PostViewModel(ID: post.ID,
+                             userID: String(post.userID),
+                             title: post.title,
+                             description: post.description,
+                             isRead: post.isRead,
+                             isFavorite: post.isFavorite)
+    }
+    
+    func getIndexOfPost(ID: Int) -> Int {
         var indexInt = 0
         guard let index = postsList.firstIndex(where: {$0.ID == ID}) else {
-            return
+            return 0
         }
         indexInt = postsList.distance(from: postsList.startIndex, to: index)
-        postsList[indexInt].isRead = true
+        return indexInt
+    }
+    
+    func updateListWithID(_ ID: Int) {
+        let index = getIndexOfPost(ID: ID)
+        postsList[index].isRead = true
     }
 
     func getPostBy(ID: Int) -> Post? {

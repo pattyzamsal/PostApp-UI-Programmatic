@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 enum AssetColor {
-   case blueLight
+    case blueLight
+    case yellowForStar
 }
 
 extension UIColor {
@@ -17,6 +18,8 @@ extension UIColor {
         switch name {
         case .blueLight:
             return UIColor(named: "blueLight")
+        case .yellowForStar:
+            return UIColor(named: "yellowForStar")
         }
     }
 }

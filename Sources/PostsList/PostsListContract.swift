@@ -21,6 +21,7 @@ protocol PostsListPresenterContract {
     func didTapFavoritesPosts()
     func didTapDelete()
     func didTapPost(ID: Int)
+    func reloadView(post: PostViewModel)
     func goToPreviousView()
 }
 
@@ -29,7 +30,7 @@ protocol PostsListViewContract: AnyObject {
 }
 
 protocol PostsListNavigatorContract {
-    func presentPostDetail()
+    func presentPostDetail(postViewModel: PostViewModel)
     func presentPreviousView()
 }
 

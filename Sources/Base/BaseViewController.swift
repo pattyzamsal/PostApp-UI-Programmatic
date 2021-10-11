@@ -25,9 +25,12 @@ class BaseViewController: UIViewController {
         navigationItem.rightBarButtonItem = item
     }
     
-    func setBackButton(title: String) {
+    func setBackButton(action: Selector?) {
         navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.backItem?.title = ""
+        navigationItem.hidesBackButton = true
+        let backImage = UIImage(systemName: "chevron.left")
+        let backButton = UIBarButtonItem(image: backImage, style: .plain, target: self, action: action)
+        navigationItem.leftBarButtonItem = backButton
     }
     
     func setActivityIndicator(_ activityIndicator: UIActivityIndicatorView!) {
