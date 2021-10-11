@@ -26,9 +26,9 @@ enum TextsConstants: String {
     case noFavorites = "There aren't any favorite post"
     
     // MARK: - Post Detail
-    case backTitle = "List"
     case postDetail = "Post's detail"
     case userInformation = "User information"
+    case userInformationError = "It wasn't be possible to get user's information"
     case userName = "Name: @"
     case userUsername = "Username: @"
     case userEmail = "Email: @"
@@ -36,6 +36,6 @@ enum TextsConstants: String {
     case userWebsite = "Website: @"
     case userAddress = "Address: @"
     case commentsTitle = "Comments"
-    case commentByUserAndEmail = "Comment by: @"
+    case commentByEmail = "Comment by: @"
     case noComments = "There aren't any registered comment about this post"
 }

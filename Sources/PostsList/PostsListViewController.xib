@@ -85,9 +85,8 @@
                         <constraint firstAttribute="trailing" secondItem="PS4-gg-zC0" secondAttribute="trailing" id="v69-yI-EY9"/>
                     </constraints>
                 </view>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="j3U-7x-AT0">
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="j3U-7x-AT0">
                     <rect key="frame" x="197" y="438" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" red="0.33182605570000001" green="0.73677098699999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <color key="color" red="0.33182605570000001" green="0.73677098699999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </activityIndicatorView>
@@ -99,6 +98,8 @@
                 <constraint firstAttribute="trailing" secondItem="Jbs-kG-8ui" secondAttribute="trailing" id="OVG-PH-wFq"/>
                 <constraint firstItem="eJi-C3-KPK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SZj-Zc-1ff"/>
                 <constraint firstItem="Jbs-kG-8ui" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="TOf-lQ-GpG"/>
+                <constraint firstItem="j3U-7x-AT0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eOF-pl-DIq"/>
+                <constraint firstItem="j3U-7x-AT0" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="fJw-fw-PCP"/>
                 <constraint firstAttribute="trailing" secondItem="eJi-C3-KPK" secondAttribute="trailing" id="h4W-hP-KE2"/>
                 <constraint firstItem="Jbs-kG-8ui" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qrz-9n-CIH"/>
                 <constraint firstItem="eJi-C3-KPK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qxS-bO-LAz"/>
