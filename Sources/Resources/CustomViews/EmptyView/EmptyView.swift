@@ -8,8 +8,18 @@
 import UIKit
 
 final class EmptyView: UIView {
-    @IBOutlet private weak var contentView: UIView!
-    @IBOutlet private weak var descriptionLabel: UILabel!
+    private let contentView: UIView! = {
+        let contentView = UIView()
+        contentView.backgroundColor = .white
+        return contentView
+    }()
+    
+    private let descriptionLabel: PostLabel = {
+        let descriptionLabel = PostLabel()
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.assignStyleInEmptyView()
+        return descriptionLabel
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,15 +32,26 @@ final class EmptyView: UIView {
     }
     
     func fill(description: String) {
-        descriptionLabel.text = description
+        descriptionLabel.setupText(description)
     }
 }
 
 private extension EmptyView {
     func setupXIB() {
-        Bundle.main.loadNibNamed("EmptyView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        contentView.addSubview(descriptionLabel)
+        addConstraintsForLabel()
+    }
+    
+    func addConstraintsForLabel() {
+        NSLayoutConstraint.activate([
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 20.0),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -20.0),
+            descriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            ])
     }
 }
