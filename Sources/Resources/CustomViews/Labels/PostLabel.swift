@@ -45,6 +45,12 @@ final class PostLabel: UILabel {
         setupAlignment(.center)
         setupFont(style: .demiBold, size: .big)
     }
+    
+    func assignStylePostCell() {
+        setupColor(.black)
+        setupAlignment(.left)
+        setupFont(style: .regular, size: .tiny)
+    }
 }
 
 
