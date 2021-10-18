@@ -8,7 +8,7 @@
 import UIKit
 
 final class EmptyView: UIView {
-    private let contentView: UIView! = {
+    private let contentView: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = .white
         return contentView
@@ -23,12 +23,12 @@ final class EmptyView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupXIB()
+        setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupXIB()
+        setupView()
     }
     
     func fill(description: String) {
@@ -37,7 +37,7 @@ final class EmptyView: UIView {
 }
 
 private extension EmptyView {
-    func setupXIB() {
+    func setupView() {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
