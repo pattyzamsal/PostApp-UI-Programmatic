@@ -11,7 +11,7 @@ final class PostTableViewCell: UITableViewCell {
     private let titleLabel: PostLabel = {
         let titleLabel = PostLabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.assignStylePostCell()
+        titleLabel.assignRegularStyle()
         return titleLabel
     }()
     
