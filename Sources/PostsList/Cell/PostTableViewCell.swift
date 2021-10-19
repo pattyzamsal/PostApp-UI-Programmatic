@@ -56,7 +56,7 @@ final class PostTableViewCell: UITableViewCell {
 
 private extension PostTableViewCell {
     func createViews() {
-        self.selectionStyle = .gray
+        selectionStyle = .gray
         contentView.backgroundColor = .white
         contentView.addSubview(titleLabel)
         contentView.addSubview(iconImageView)
