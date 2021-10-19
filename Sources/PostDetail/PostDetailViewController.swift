@@ -11,20 +11,102 @@ import UIKit
 class PostDetailViewController: BaseViewController {
     var post: PostViewModel?
     
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var userStackView: UIStackView!
-    @IBOutlet private weak var userTitleLabel: UILabel!
-    @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var usernameLabel: UILabel!
-    @IBOutlet private weak var phoneLabel: UILabel!
-    @IBOutlet private weak var emailLabel: UILabel!
-    @IBOutlet private weak var websiteLabel: UILabel!
-    @IBOutlet private weak var addressLabel: UILabel!
-    @IBOutlet private weak var commentsLabel: UILabel!
-    @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var commentsEmptyView: EmptyView!
-    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    private let titleLabel: UILabel = {
+        let titleLabel = PostLabel()
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.assignBoldLargeStyle()
+        return titleLabel
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        let descriptionLabel = PostLabel()
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.assignRegularJustifiedStyle()
+        return descriptionLabel
+    }()
+    
+    private let userTitleLabel: UILabel = {
+        let userTitleLabel = PostLabel()
+        userTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        userTitleLabel.assignBoldStyle()
+        return userTitleLabel
+    }()
+    
+    private let nameLabel: UILabel = {
+        let nameLabel = PostLabel()
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.assignRegularStyle()
+        return nameLabel
+    }()
+    
+    private let usernameLabel: UILabel = {
+        let usernameLabel = PostLabel()
+        usernameLabel.translatesAutoresizingMaskIntoConstraints = false
+        usernameLabel.assignRegularStyle()
+        return usernameLabel
+    }()
+    
+    private let phoneLabel: UILabel = {
+        let phoneLabel = PostLabel()
+        phoneLabel.translatesAutoresizingMaskIntoConstraints = false
+        phoneLabel.assignRegularStyle()
+        return phoneLabel
+    }()
+    
+    private let emailLabel: UILabel = {
+        let emailLabel = PostLabel()
+        emailLabel.translatesAutoresizingMaskIntoConstraints = false
+        emailLabel.assignRegularStyle()
+        return emailLabel
+    }()
+    
+    private let websiteLabel: UILabel = {
+        let websiteLabel = PostLabel()
+        websiteLabel.translatesAutoresizingMaskIntoConstraints = false
+        websiteLabel.assignRegularStyle()
+        return websiteLabel
+    }()
+    
+    private let addressLabel: UILabel = {
+        let addressLabel = PostLabel()
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        addressLabel.assignRegularStyle()
+        return addressLabel
+    }()
+    
+    private var userStackView: UIStackView!
+    
+    private let commentsLabel: UILabel = {
+        let commentsLabel = PostLabel()
+        commentsLabel.translatesAutoresizingMaskIntoConstraints = false
+        commentsLabel.assignBoldStyle()
+        return commentsLabel
+    }()
+    
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = UIColor.getColorApp(name: .blueLight)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.backgroundColor = .white
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
+    private let commentsEmptyView: EmptyView = {
+        let commentsEmptyView = EmptyView()
+        commentsEmptyView.backgroundColor = .white
+        commentsEmptyView.translatesAutoresizingMaskIntoConstraints = false
+        return commentsEmptyView
+    }()
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = .large
+        activityIndicator.color = UIColor.getColorApp(name: .blueLight)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
     
     private lazy var presenter: PostDetailContract.Presenter = {
         let navigator = PostDetailNavigator(viewController: self)
@@ -37,6 +119,11 @@ class PostDetailViewController: BaseViewController {
     }()
     
     private var commentsList = [CommentViewModel]()
+    
+    override func loadView() {
+        super.loadView()
+        createViews()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +140,70 @@ class PostDetailViewController: BaseViewController {
 }
 
 private extension PostDetailViewController {
+    func createViews() {
+        view.backgroundColor = .white
+        createUserStackView()
+        view.addSubview(titleLabel)
+        view.addSubview(descriptionLabel)
+        view.addSubview(userStackView)
+        view.addSubview(commentsLabel)
+        view.addSubview(commentsEmptyView)
+        view.addSubview(tableView)
+        view.addSubview(activityIndicator)
+        addConstraintsForViews()
+    }
+    
+    func createUserStackView() {
+        let views = [userTitleLabel, nameLabel, usernameLabel,
+                     phoneLabel, emailLabel, websiteLabel, addressLabel]
+        userTitleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        usernameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        phoneLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        emailLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        websiteLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        addressLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        let stackView = UIStackView(arrangedSubviews: views)
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 0
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        userStackView = stackView
+    }
+    
+    func addConstraintsForViews() {
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            userStackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
+            userStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            userStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            commentsLabel.topAnchor.constraint(equalTo: userStackView.bottomAnchor, constant: 10),
+            commentsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            commentsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            commentsEmptyView.topAnchor.constraint(equalTo: commentsLabel.bottomAnchor, constant: 5),
+            commentsEmptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            commentsEmptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            tableView.topAnchor.constraint(equalTo: commentsLabel.bottomAnchor, constant: 5),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
     func setupViews() {
         setActivityIndicator(activityIndicator)
         setupUserView()
