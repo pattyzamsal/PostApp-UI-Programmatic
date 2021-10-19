@@ -52,6 +52,6 @@ private extension EmptyView {
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -20.0),
             descriptionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-            ])
+        ])
     }
 }

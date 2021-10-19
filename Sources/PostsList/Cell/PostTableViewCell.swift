@@ -81,7 +81,7 @@ private extension PostTableViewCell {
             arrowImageView.heightAnchor.constraint(equalTo: arrowImageView.widthAnchor, multiplier: 1/1),
             arrowImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             arrowImageView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor)
-            ])
+        ])
     }
     
     func setupCell() {
