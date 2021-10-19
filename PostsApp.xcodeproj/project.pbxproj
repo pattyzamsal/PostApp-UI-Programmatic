@@ -68,7 +68,6 @@
 		9A7A79E39E5A50E11BF4E7CA /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CE9317C2911F8FBD32C621 /* Data.framework */; };
 		9AC3A0E23EEF24A2A0B62C0B /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199114E4900841DAD125BC30 /* APIRouter.swift */; };
 		9CA4875EE78EAC25E6B14489 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAB321096D3F712D0A746E2 /* InitialViewController.swift */; };
-		9D611305DE452ABA793584DC /* PostsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62988AC9C3D31CD4DD4CB0E7 /* PostsListViewController.xib */; };
 		A408891004660B2E7814A505 /* MockCommentsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873222D4A7DEDE3E4A5AB6BA /* MockCommentsProvider.swift */; };
 		A7F540AF28A371045DA1A13A /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898FAD3C962646110258DF5E /* Comment.swift */; };
 		AAB3756CB0400EF6A372F514 /* PostsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052E731D4A8CD2C23F746BE6 /* PostsListViewController.swift */; };
@@ -257,7 +256,6 @@
 		579ED13BD2ADB9CF614E6CB1 /* CommentsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsProvider.swift; sourceTree = "<group>"; };
 		5B74371E48B2496DF95747C7 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61208D9FB7A253E5B883BCAC /* Posts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Posts.json; sourceTree = "<group>"; };
-		62988AC9C3D31CD4DD4CB0E7 /* PostsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsListViewController.xib; sourceTree = "<group>"; };
 		6693E7812617C99C2F18762F /* PostEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEntity.swift; sourceTree = "<group>"; };
 		69587A66AC9D46CB071BBAB8 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		69997FC73256D98D93DEBD43 /* CommentsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUseCase.swift; sourceTree = "<group>"; };
@@ -683,7 +681,6 @@
 				53A800C5DD3635CC61665ADC /* PostsListNavigator.swift */,
 				0236978005C67B088B2BD3AA /* PostsListPresenter.swift */,
 				052E731D4A8CD2C23F746BE6 /* PostsListViewController.swift */,
-				62988AC9C3D31CD4DD4CB0E7 /* PostsListViewController.xib */,
 				E07A0961ECED811696B256AC /* PostViewModel.swift */,
 				E9899A0A606DC0935E14CF54 /* Cell */,
 			);
@@ -899,7 +896,6 @@
 				FE370D957CC1BEA99A819B41 /* Assets.xcassets in Resources */,
 				8430694A1CDF25582EAB35B9 /* LaunchScreen.storyboard in Resources */,
 				E2754012D17AF4CA409B5F3A /* Main.storyboard in Resources */,
-				9D611305DE452ABA793584DC /* PostsListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
